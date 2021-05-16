@@ -1,4 +1,7 @@
 window.onload = function() {
+    var cart = {};
+    var goods = {};
+
     function showDate() {
         var str = '';
         var now = new Date();
@@ -11,6 +14,8 @@ window.onload = function() {
             console.log(data);
             data = data['feed']['entry'];
             console.log(data);
+            goods = arraayHelper(data);
+            console.log(goods);
             showProduct(data);
 
         }
@@ -30,8 +35,33 @@ window.onload = function() {
         document.querySelector('.shop_field').innerHTML = out;
         document.onclick = function(e) {
             console.log(e.target.attributes.name.nodeValue, e.target.attributes.data.nodeValue);
+            if (e.target.attributes.name.nodeValue == 'add_to_card');
+            addToCart(e.target.attributes.data.nodeValue);
         }
 
-        // $('.product_field').html(out);
+
+    }
+
+    function addToCart(elem) {
+        if (cart[elem] !== undefined) {
+            cart[elem]++;
+        } else {
+            cart[elem] = 1;
+        }
+        console.log(cart);
+    }
+
+    function arraayHelper(arr) {
+        var out = {};
+        for (var i = 0; i < arr.length; i++) {
+            var temp = {};
+            temp['article'] = arr[i]['gsx$article']['$t'];
+            temp['name'] = arr[i]['gsx$name']['$t'];
+            temp['count'] = arr[i]['gsx$count']['$t'];
+            temp['price'] = arr[i]['gsx$price']['$t'];
+            temp['image'] = arr[i]['gsx$image']['$t'];
+            out[arr[i]['gsx$article']['$t']] = temp;
+        }
+        return out;
     }
 }
