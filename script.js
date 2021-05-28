@@ -49,6 +49,7 @@ window.onload = function() {
             cart[elem] = 1;
         }
         console.log(cart);
+        showCart();
     }
 
     function arraayHelper(arr) {
@@ -63,5 +64,21 @@ window.onload = function() {
             out[arr[i]['gsx$article']['$t']] = temp;
         }
         return out;
+    }
+
+    function showCart() {
+        var ul = document.querySelector('.cart');
+        ul.innerHTML = '';
+        var sum = 0;
+        for (var key in cart) {
+            var li = '<li>'
+            li += goods[key]['name'] + ' ';
+            li += cart[key] + 'шт';
+            li += goods[key]['price'] * cart[key];
+            sum += goods[key]['price'] * cart[key];
+            ul.innerHTML += li;
+
+        }
+        ul.innerHTML += 'придется взять в кредит ' + sum;
     }
 }
