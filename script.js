@@ -29,7 +29,7 @@ window.onload = function() {
             out += `<h3 class="title">${data[i]['gsx$name']['$t']}</h3>`;
             out += `<img src="${data[i]['gsx$image']['$t']}" alt="">`;
             out += `<p class="price">Цена:${data[i]['gsx$price']['$t']} </p>`;
-            out += `<button name="add_to_cart" data="${data[i]['gsx$article']['$t']}">взять в кредит</button>`;
+            out += `<button class="button" name="add_to_cart" data="${data[i]['gsx$article']['$t']}">купить</button>`;
             out += `</div>`;
         }
         document.querySelector('.shop_field').innerHTML = out;
@@ -79,6 +79,6 @@ window.onload = function() {
             ul.innerHTML += li;
 
         }
-        ul.innerHTML += 'придется взять в кредит ' + sum;
+        ul.innerHTML += 'итого ' + sum;
     }
 }
