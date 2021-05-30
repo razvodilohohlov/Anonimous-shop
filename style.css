@@ -23,6 +23,7 @@ body {
     color:whitesmoke;
     cursor: not-allowed;
     background-color: black;
+    border-radius: 50%;
 }
 img {
     width: 100%;
